@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Prisma generated files (only if generated locally)
+generated/
+
+# Docker
+docker-data/
+
+# Temporary files
+.tmp/
+temp/
+.cache/
+
+# TurboRepo
+.turbo/
+
+# Misc
+*.swp
+*.swo
