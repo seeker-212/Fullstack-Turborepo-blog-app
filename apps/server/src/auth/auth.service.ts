@@ -2,10 +2,17 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { SignInInput } from './dto/signIn.Input';
 import { PrismaService } from '../prisma/prisma.service';
 import { verify } from 'argon2';
+import { JwtService } from '@nestjs/jwt';
+import { th } from '@faker-js/faker';
+import { AuthPayload } from './types/auth-jwtPayload';
+import { User } from '../user/entities/user.entity';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwtService: JwtService,
+  ) {}
   async validateLocalUser({ email, password }: SignInInput) {
     const user = await this.prisma.user.findUnique({
       where: {
@@ -13,7 +20,7 @@ export class AuthService {
       },
     });
     if (!user) {
-      throw new UnauthorizedException('User Not Found');
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     if (!user.password) {
@@ -27,5 +34,23 @@ export class AuthService {
     }
 
     return user;
+  }
+
+  async generateToken(userId: number) {
+    const payload: AuthPayload = { sub: userId };
+    const accessToken = await this.jwtService.signAsync(payload);
+
+    return { accessToken };
+  }
+
+  async login(user: User) {
+    const { accessToken } = await this.generateToken(user.id);
+
+    return {
+      id: user.id,
+      name: user.name,
+      avatar: user.avatar,
+      accessToken,
+    };
   }
 }
