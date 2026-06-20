@@ -4,7 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { verify } from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { th } from '@faker-js/faker';
-import { AuthPayload } from './types/auth-jwtPayload';
+import { AuthJwtPayload } from './types/auth-jwtPayload';
 import { User } from '../user/entities/user.entity';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   async generateToken(userId: number) {
-    const payload: AuthPayload = { sub: userId };
+    const payload: AuthJwtPayload = { sub: userId };
     const accessToken = await this.jwtService.signAsync(payload);
 
     return { accessToken };
@@ -52,5 +52,18 @@ export class AuthService {
       avatar: user.avatar,
       accessToken,
     };
+  }
+
+  async validateJwtUser(userId: number) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) throw new UnauthorizedException('Bingo nobody here!');
+
+    const currentuser = { id: user.id };
+    return currentuser;
   }
 }

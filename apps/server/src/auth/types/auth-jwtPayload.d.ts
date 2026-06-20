@@ -1,3 +1,3 @@
-export type AuthPayload = {
+export type AuthJwtPayload = {
   sub: number;
 };
