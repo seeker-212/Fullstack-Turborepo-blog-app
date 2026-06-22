@@ -1,7 +1,9 @@
 import Posts from "@/components/Posts";
 import Hero from "../components/hero";
+import { fetchPosts } from "@/lib/actions/postActions";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await fetchPosts();
   return (
     <main>
       <Hero />

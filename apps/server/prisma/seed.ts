@@ -20,7 +20,7 @@ async function main() {
     title: faker.lorem.sentence(),
     slug: generateSlug(faker.lorem.sentence()),
     content: faker.lorem.paragraph(3),
-    thumbnail: faker.image.urlLoremFlickr(),
+    thumbnail: faker.image.urlPicsumPhotos(),
     authorId: faker.number.int({ min: 1, max: 10 }),
     published: true,
   }));
