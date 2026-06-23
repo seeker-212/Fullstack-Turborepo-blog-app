@@ -7,7 +7,6 @@ import { Post } from "../types/modelTypes";
 
 export const fetchPosts = async () => {
   const data = await fetchGraphQl(print(GET_POSTS));
-  console.log({ data });
 
   return data.posts as Post[];
 };

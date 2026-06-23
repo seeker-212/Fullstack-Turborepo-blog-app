@@ -17,6 +17,9 @@ export class Post {
   @Field({ nullable: true })
   thumbnail?: string;
 
+  @Field()
+  content!: string;
+
   @Field(() => Boolean)
   published!: boolean;
 

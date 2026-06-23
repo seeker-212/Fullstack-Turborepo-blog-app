@@ -3,6 +3,7 @@ export type Post = {
   title: string;
   slug: string;
   author: User;
+  content: string;
   thumbnail: string | null;
   published: boolean;
   authorId: number;
@@ -16,7 +17,7 @@ export type User = {
   id: number;
   email: string;
   bio: string | null;
-  avatar: string;
+  avatar?: string;
   createdAt: Date;
   updatedAt: Date;
 };

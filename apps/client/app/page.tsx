@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <Posts posts={[]} />
+      <Posts posts={posts} />
     </main>
   );
 }
