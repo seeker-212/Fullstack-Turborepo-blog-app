@@ -8,7 +8,7 @@ export function transformTakeSkip({
   pageSize?: number;
 }) {
   return {
-    skip: (page ?? 1) * (pageSize ?? DEFAULT_PAGE_SIZE),
+    skip: ((page ?? 1) - 1) * (pageSize ?? DEFAULT_PAGE_SIZE),
     take: pageSize ?? DEFAULT_PAGE_SIZE,
   };
 }
@@ -44,5 +44,5 @@ export function calculatePageNumbers({
     return [1, ...pages, totalPages];
   }
 
-  return Array.from({ length: totalNumbers }, (_, i) => i + 1);
+  return Array.from({ length: totalPages }, (_, i) => i + 1);
 }

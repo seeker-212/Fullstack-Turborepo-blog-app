@@ -14,9 +14,13 @@ export class PostResolver {
   @Query(() => [Post], { name: 'posts' })
   findAll(
     @Context() context,
-    @Args('skip', { nullable: true }) skip?: number,
-    @Args('take', { nullable: true }) take?: number,
+    @Args('skip', { type: () => Int, nullable: true })
+    skip?: number,
+
+    @Args('take', { type: () => Int, nullable: true })
+    take?: number,
   ) {
+    console.log({ skip, take });
     const user = context.req.user;
     console.log(user);
     return this.postService.findAll({ skip, take });

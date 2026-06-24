@@ -1,6 +1,6 @@
 import { BACKEND_URL } from "./constants";
 
-export const fetchGraphQl = async (query: string, variable = {}) => {
+export const fetchGraphQl = async (query: string, variables = {}) => {
   const response = await fetch(`${BACKEND_URL}/graphql`, {
     method: "POST",
     headers: {
@@ -8,7 +8,7 @@ export const fetchGraphQl = async (query: string, variable = {}) => {
     },
     body: JSON.stringify({
       query,
-      variable,
+      variables,
     }),
   });
 
