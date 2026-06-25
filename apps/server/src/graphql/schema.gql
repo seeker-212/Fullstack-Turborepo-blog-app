@@ -39,7 +39,7 @@ type Post {
   content: String!
   published: Boolean!
   author: User!
-  tag: [Tag!]!
+  tags: [Tag!]!
   comment: CommentEntity!
   createdAt: DateTime!
   updatedAt: DateTime!

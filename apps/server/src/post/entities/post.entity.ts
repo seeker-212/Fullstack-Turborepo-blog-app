@@ -27,7 +27,7 @@ export class Post {
   author!: User;
 
   @Field(() => [Tag])
-  tag!: Tag[];
+  tags!: Tag[];
 
   @Field(() => CommentEntity)
   comment!: CommentEntity;

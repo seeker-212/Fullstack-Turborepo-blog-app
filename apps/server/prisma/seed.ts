@@ -5,8 +5,8 @@ function generateSlug(title: string): string {
   return title
     .toLowerCase()
     .trim()
-    .replace(/ /g, '-')
-    .replace(/[^\n=]+/g, '');
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
 }
 async function main() {
   const users = Array.from({ length: 10 }).map(() => ({
