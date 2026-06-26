@@ -1,6 +1,7 @@
 "use client";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import SignUpButton from "@/components/SignUpButton";
 
 const signUpForm = () => {
   return (
@@ -19,6 +20,8 @@ const signUpForm = () => {
         <Label htmlFor="password">Password</Label>
         <Input id="password" name="password" type="password" />
       </div>
+
+      <SignUpButton>Submit</SignUpButton>
     </form>
   );
 };
