@@ -2,10 +2,13 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import SignUpButton from "@/components/SignUpButton";
+import { useActionState } from "react";
+import { signUp } from "@/lib/actions/auth";
 
 const signUpForm = () => {
+  const [state, action] = useActionState(signUp, undefined);
   return (
-    <form className="flex flex-col gap-2">
+    <form action={action} className="flex flex-col gap-2">
       <div>
         <Label htmlFor="name">Name</Label>
         <Input id="name" name="name" placeholder="John Deo" />
@@ -21,7 +24,7 @@ const signUpForm = () => {
         <Input id="password" name="password" type="password" />
       </div>
 
-      <SignUpButton>Submit</SignUpButton>
+      <SignUpButton>SignUp</SignUpButton>
     </form>
   );
 };
