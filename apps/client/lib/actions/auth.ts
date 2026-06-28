@@ -17,6 +17,7 @@ export async function signUp(
 
   if (!validatedField.success)
     return {
+      data: Object.fromEntries(formData.entries()),
       errors: validatedField.error.flatten().fieldErrors,
     };
 
@@ -26,6 +27,11 @@ export async function signUp(
     },
   });
 
-  if (data.errors) return { errors: {}, message: "Something Went Wrong" };
+  if (data.errors)
+    return {
+      data: Object.fromEntries(formData.entries()),
+      errors: {},
+      message: "Something Went Wrong",
+    };
   redirect("/auth/signin");
 }

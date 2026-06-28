@@ -1,10 +1,9 @@
 import { useFormStatus } from "react-dom";
 import { Button } from "./ui/button";
 
-const SignUpButton = ({
-  children,
-  ...props
-}: React.ComponentProps<"button">) => {
+type SignUpButtonProps = React.ComponentProps<typeof Button>;
+
+const SignUpButton = ({ children, ...props }: SignUpButtonProps) => {
   const { pending } = useFormStatus();
 
   return (

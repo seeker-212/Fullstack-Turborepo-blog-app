@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignUpForm from "./_components/signUpForm";
 
 const SignUpPage = () => {
   return (
@@ -9,8 +10,9 @@ const SignUpPage = () => {
       <h2 className="text-center text-2xl font-bold mb-4">Sign Up</h2>
 
       {/* SIGN UP FORM HERE */}
+      <SignUpForm />
 
-      <div>
+      <div className="text-sm">
         <p>Already have an account</p>
         <Link className="underline" href={"/auth/signin"}>
           signIn
