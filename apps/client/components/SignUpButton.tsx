@@ -1,9 +1,11 @@
+"use client";
+
 import { useFormStatus } from "react-dom";
 import { Button } from "./ui/button";
 
 type SignUpButtonProps = React.ComponentProps<typeof Button>;
 
-const SignUpButton = ({ children, ...props }: SignUpButtonProps) => {
+const SubmitButton = ({ children, ...props }: SignUpButtonProps) => {
   const { pending } = useFormStatus();
 
   return (
@@ -13,4 +15,4 @@ const SignUpButton = ({ children, ...props }: SignUpButtonProps) => {
   );
 };
 
-export default SignUpButton;
+export default SubmitButton;

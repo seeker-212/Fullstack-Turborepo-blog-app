@@ -1,37 +1,26 @@
 "use client";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import SubmitButton from "@/components/SignUpButton";
 import { useActionState } from "react";
-import { signUp } from "@/lib/actions/auth";
+import { signIn } from "@/lib/actions/auth";
 
-const SignUpForm = () => {
-  const [state, action] = useActionState(signUp, undefined);
+const SignInForm = () => {
+  const [state, action] = useActionState(signIn, undefined);
   return (
     <form action={action} className="flex flex-col gap-2">
       {!!state?.message && (
         <p className="text-red-500 text-sm">{state.message}</p>
       )}
       <div>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          name="name"
-          placeholder="John Deo"
-          defaultValue={state?.data.name}
-        />
-      </div>
-      {!!state?.errors?.name && (
-        <p className="text-red-500 text-sm">{state.errors.name}</p>
-      )}
-
-      <div>
         <Label htmlFor="email">Email</Label>
         <Input
+          defaultValue={state?.data.email}
           id="email"
           name="email"
           placeholder="John@Example.com"
-          defaultValue={state?.data?.email}
+          type="email"
         />
       </div>
       {!!state?.errors?.email && (
@@ -41,26 +30,19 @@ const SignUpForm = () => {
       <div>
         <Label htmlFor="password">Password</Label>
         <Input
+          defaultValue={state?.data.password}
           id="password"
           name="password"
           type="password"
-          defaultValue={state?.data?.password}
         />
       </div>
       {!!state?.errors?.password && (
-        <div className="text-sm text-red-500">
-          <p>Password Must</p>
-          <ul>
-            {state.errors.password.map((err) => (
-              <li key={err}>{err}</li>
-            ))}
-          </ul>
-        </div>
+        <p className="text-red-500 text-sm">{state.errors.password}</p>
       )}
 
-      <SubmitButton>Sign Up</SubmitButton>
+      <SubmitButton>Sign In</SubmitButton>
     </form>
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
