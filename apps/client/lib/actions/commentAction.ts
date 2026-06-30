@@ -21,7 +21,7 @@ export async function getPostComment({
   });
 
   return {
-    comments: data.getPostComments as CommentEntity[],
+    comments: data.getPostComment as CommentEntity[],
     count: data.postCommentCount as number,
   };
 }
