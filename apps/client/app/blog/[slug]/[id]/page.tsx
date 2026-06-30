@@ -1,6 +1,7 @@
 import { fetchPostById } from "@/lib/actions/postActions";
 import Image from "next/image";
 import SanitizeContent from "./_component/sanitizeContent";
+import Comments from "./_component/comments";
 
 type Props = {
   params: {
@@ -30,6 +31,7 @@ const PostPage = async ({ params }: Props) => {
       <SanitizeContent content={post.content} />
 
       {/*TODO:  POST COMMENT here */}
+      <Comments postId={post.id} />
     </main>
   );
 };
