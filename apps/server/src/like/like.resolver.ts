@@ -20,4 +20,30 @@ export class LikeResolver {
 
     return await this.likeService.likePost({ postId, userId });
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Mutation(() => Boolean)
+  async unLikePost(
+    @Context() context,
+    @Args('postId', { type: () => Int! }) postId: number,
+  ) {
+    const userId = context.req.user.id;
+
+    return await this.likeService.unLikePost({ postId, userId });
+  }
+
+  @Query(() => Int)
+  postLikesCount(@Args('postId', { type: () => Int! }) postId: number) {
+    return this.likeService.getPostLikesCount(postId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Query(() => Boolean)
+  userLikedPost(
+    @Context() context,
+    @Args('postId', { type: () => Int! }) postId: number,
+  ) {
+    const userId = context.req.user.id;
+    return this.likeService.userLikedPost({ postId, userId });
+  }
 }
