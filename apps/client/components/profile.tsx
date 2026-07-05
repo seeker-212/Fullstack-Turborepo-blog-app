@@ -50,7 +50,7 @@ const Profile = ({ user }: Props) => {
             <span>Create New Post</span>
           </Link>
 
-          <Link href={"/user/"}>
+          <Link href={"/user/posts"}>
             <ListBulletIcon className="w-4" />
             <span>Post</span>
           </Link>

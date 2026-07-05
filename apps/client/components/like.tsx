@@ -47,7 +47,7 @@ const Like = (props: Props) => {
         </button>
       )}
 
-      <p className="text-slate-600">{data?.likeCount}</p>
+      <p className="text-slate-600">{data?.likeCount} likes</p>
     </div>
   );
 };

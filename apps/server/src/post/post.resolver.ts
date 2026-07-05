@@ -5,6 +5,8 @@ import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
+import { take } from 'rxjs';
+import { DEFAULT_PAGE_SIZE } from '../constants';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -34,5 +36,29 @@ export class PostResolver {
   @Query(() => Post)
   getPostById(@Args('id', { type: () => Int }) id: number) {
     return this.postService.findOne(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Query(() => [Post])
+  getUsersPosts(
+    @Context() context,
+    @Args('skip', { nullable: true, type: () => Int }) skip?: number,
+    @Args('take', { nullable: true, type: () => Int }) take?: number,
+  ) {
+    const userId = context.req.user.id;
+
+    return this.postService.findByUser({
+      userId,
+      skip: skip ?? 0,
+      take: take ?? DEFAULT_PAGE_SIZE,
+    });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Query(() => Int)
+  userPostCount(@Context() context) {
+    const userId = context.req.user.id;
+
+    return this.postService.userPostCount(userId);
   }
 }

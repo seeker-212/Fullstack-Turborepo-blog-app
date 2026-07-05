@@ -2,6 +2,16 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { User } from '../../user/entities/user.entity';
 import { Tag } from '../../tag/entities/tag.entity';
 import { CommentEntity } from '../../comment/entities/comment.entity';
+import { number } from 'zod';
+
+@ObjectType()
+export class Count {
+  @Field(() => Int)
+  likes!: number;
+
+  @Field(() => Int)
+  comments!: number;
+}
 
 @ObjectType()
 export class Post {
@@ -29,12 +39,15 @@ export class Post {
   @Field(() => [Tag])
   tags!: Tag[];
 
-  @Field(() => CommentEntity)
-  comment!: CommentEntity;
+  @Field(() => [CommentEntity])
+  comment!: CommentEntity[];
 
   @Field()
   createdAt!: Date;
 
   @Field()
   updatedAt!: Date;
+
+  @Field(() => Count)
+  _count!: Count;
 }
