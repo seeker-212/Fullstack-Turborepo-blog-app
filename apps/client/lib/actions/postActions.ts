@@ -44,7 +44,7 @@ export async function fetchUserPosts({
   });
 
   return {
-    posts: data.getUserPosts as Post[],
+    posts: data.getUsersPosts as Post[],
     totalPosts: data.userPostCount as number,
   };
 }

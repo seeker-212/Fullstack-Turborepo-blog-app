@@ -13,7 +13,19 @@ const UserPostPage = async ({ searchParams }: Props) => {
     page: page ? +page : 1,
     pageSize: DEFAULT_PAGE_SIZE,
   });
-  return <div>{!posts || !posts.length ? <NoPost /> : <PostList />}</div>;
+  return (
+    <div>
+      {!posts || !posts.length ? (
+        <NoPost />
+      ) : (
+        <PostList
+          posts={posts}
+          currentPages={page ? +page : 1}
+          totalPages={Math.ceil(totalPosts / DEFAULT_PAGE_SIZE)}
+        />
+      )}
+    </div>
+  );
 };
 
 export default UserPostPage;
