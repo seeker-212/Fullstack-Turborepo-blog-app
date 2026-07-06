@@ -12,6 +12,7 @@ import { Post } from "../types/modelTypes";
 import { transformTakeSkip } from "../helper";
 import { PostFormState } from "../types/formState";
 import { PostFormSchema } from "../zodSchema/postFormSchema";
+import { uploadThumbnail } from "../upload";
 
 export const fetchPosts = async ({
   page,
@@ -71,7 +72,10 @@ export async function saveNewPost(
     };
 
   //TODO: Upload thumbnail to supabase
-  const thumbnailUrl = "";
+  let thumbnailUrl = "";
+  if (validatedFields.data.thumbnail) {
+    thumbnailUrl = await uploadThumbnail(validatedFields.data.thumbnail);
+  }
 
   //Call graphQl Api
   const data = await authFetchGraphQL(print(CREATE_POST_MUTATION), {
