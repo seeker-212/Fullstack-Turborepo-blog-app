@@ -13,7 +13,7 @@ const PostListItem = ({ post }: Props) => {
         <div className="flex items-center gap-4">
           <div className="relative h-24 w-36 shrink-0 overflow-hidden rounded-md">
             <Image
-              src={post.thumbnail ?? "/no-image.jpg"}
+              src={post.thumbnail || "/no-image.jpg"}
               alt={post.title}
               fill
               className="object-cover"

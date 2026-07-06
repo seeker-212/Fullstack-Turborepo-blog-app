@@ -1,5 +1,6 @@
 import React from "react";
 import UpsertPostForm from "./_components/upsertPost";
+import CreatePostContainer from "./_components/CreatePostContainer";
 
 type Props = {};
 
@@ -9,7 +10,7 @@ const CreatePostPage = (props: Props) => {
       <h2 className="text-lg text-center font-bold text-slate-700">
         Create a New Post
       </h2>
-      <UpsertPostForm />
+      <CreatePostContainer />
     </div>
   );
 };
