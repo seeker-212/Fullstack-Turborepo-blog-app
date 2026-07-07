@@ -18,7 +18,7 @@ const PostActions = ({ postId }: Props) => {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href={`/user/posts/${postId}/edit`}
+              href={`/user/posts/${postId}/update`}
               className="rounded bg-blue-600 px-3 py-2 text-sm text-white transition hover:bg-blue-700"
             >
               <PencilIcon className="w-4" />

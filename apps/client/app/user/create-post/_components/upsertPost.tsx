@@ -33,6 +33,7 @@ const UpsertPostForm = ({ state, formAction }: Props) => {
       className="flex flex-col gap-5 [&>div>label]:text-slate-500 [&>div>input]:transition
     [&>div>textarea]:transition"
     >
+      <input hidden name="postId" defaultValue={state?.data?.postId} />
       <div>
         <Label htmlFor="title">Title</Label>
         <Input
@@ -116,7 +117,7 @@ const UpsertPostForm = ({ state, formAction }: Props) => {
           type="checkbox"
           name="published"
           className="h-4 w-4"
-          defaultValue={state?.data?.published}
+          defaultChecked={state?.data?.published === "on" ? true : false}
         />
         <Label htmlFor="published">Publish Now</Label>
       </div>

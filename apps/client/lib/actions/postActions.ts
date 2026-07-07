@@ -7,6 +7,7 @@ import {
   GET_POST_BY_ID,
   GET_POSTS,
   GET_USER_POSTS,
+  UPDATE_POST_MUTATION,
 } from "../gqlQueries";
 import { Post } from "../types/modelTypes";
 import { transformTakeSkip } from "../helper";
@@ -85,6 +86,35 @@ export async function saveNewPost(
     },
   });
   if (data) return { message: "Success! New Post Saved", ok: true };
+  return {
+    message: "Oops, Something Went Wrong!",
+    data: Object.fromEntries(formData.entries()),
+  };
+}
+
+export async function updatePost(
+  state: PostFormState,
+  formData: FormData,
+): Promise<PostFormState> {
+  const validatedFields = PostFormSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
+
+  if (!validatedFields.success) {
+    return {
+      data: Object.fromEntries(formData.entries()),
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  //Check if thumbnail have been changed
+  const data = await authFetchGraphQL(print(UPDATE_POST_MUTATION), {
+    input: {
+      ...validatedFields.data,
+    },
+  });
+
+  if (data) return { message: "Success! Post Updated", ok: true };
   return {
     message: "Oops, Something Went Wrong!",
     data: Object.fromEntries(formData.entries()),
