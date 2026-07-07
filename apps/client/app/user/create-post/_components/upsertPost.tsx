@@ -87,9 +87,9 @@ const UpsertPostForm = ({ state, formAction }: Props) => {
           <p className="text-red-500 animate-shake">{state.errors.thumbnail}</p>
         )}
 
-        {imageUrl && (
+        {(!!imageUrl || !!state?.data?.previousThumbnailUrl) && (
           <Image
-            src={imageUrl}
+            src={(imageUrl || state?.data?.previousThumbnailUrl) ?? ""}
             alt="Post thumbnail preview"
             width={200}
             height={150}

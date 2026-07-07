@@ -78,8 +78,7 @@ export class PostResolver {
   @Mutation(() => Post)
   updatePost(
     @Context() context,
-    @Args('updatePostInput', { type: () => Int! })
-    updatePostInput: UpdatePostInput,
+    @Args('updatePostInput') updatePostInput: UpdatePostInput,
   ) {
     const userId = context.req.user.id;
     return this.postService.update({ userId, updatePostInput });

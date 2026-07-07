@@ -92,6 +92,7 @@ export async function saveNewPost(
   };
 }
 
+//Update Post
 export async function updatePost(
   state: PostFormState,
   formData: FormData,
@@ -108,9 +109,16 @@ export async function updatePost(
   }
 
   //Check if thumbnail have been changed
+  const { thumbnail, ...inputs } = validatedFields.data;
+  let thumbnailUrl = "";
+  if (thumbnail) {
+    thumbnailUrl = await uploadThumbnail(thumbnail);
+  }
+
   const data = await authFetchGraphQL(print(UPDATE_POST_MUTATION), {
     input: {
-      ...validatedFields.data,
+      ...inputs,
+      ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
     },
   });
 

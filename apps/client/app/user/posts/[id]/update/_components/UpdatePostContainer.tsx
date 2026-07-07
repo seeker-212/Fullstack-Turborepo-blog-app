@@ -17,6 +17,7 @@ const UpdatePostContainer = ({ post }: Props) => {
       content: post.content,
       published: post.published ? "on" : undefined,
       tags: post.tags.map((tag) => tag.name).join(","),
+      previousThumbnailUrl: post.thumbnail ?? undefined,
     },
   });
 

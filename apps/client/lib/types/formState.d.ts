@@ -39,6 +39,7 @@ export type PostFormState =
         thumbnail?: File | null;
         tags?: string;
         published?: string;
+        previousThumbnailUrl?: string;
       };
 
       errors?: {

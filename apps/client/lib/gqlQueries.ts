@@ -125,7 +125,7 @@ export const CREATE_POST_MUTATION = gql`
 `;
 
 export const UPDATE_POST_MUTATION = gql`
-  mutation updatePost($input: UpdatePostInput!) {
+  mutation UpdatePost($input: UpdatePostInput!) {
     updatePost(updatePostInput: $input) {
       id
     }
