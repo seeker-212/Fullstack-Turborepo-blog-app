@@ -4,6 +4,7 @@ import { print } from "graphql";
 import { authFetchGraphQL, fetchGraphQl } from "../fetchGraphQl";
 import {
   CREATE_POST_MUTATION,
+  DELETE_POST_MUTATION,
   GET_POST_BY_ID,
   GET_POSTS,
   GET_USER_POSTS,
@@ -58,6 +59,7 @@ export async function fetchUserPosts({
   };
 }
 
+//Create New post
 export async function saveNewPost(
   state: PostFormState,
   formData: FormData,
@@ -127,4 +129,12 @@ export async function updatePost(
     message: "Oops, Something Went Wrong!",
     data: Object.fromEntries(formData.entries()),
   };
+}
+
+//DELETE USER POST
+export async function deletePost(postId: number) {
+  const data = await authFetchGraphQL(print(DELETE_POST_MUTATION), {
+    postId,
+  });
+  return data.deletePost;
 }
